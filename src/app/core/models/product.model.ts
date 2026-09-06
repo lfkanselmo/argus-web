@@ -9,3 +9,14 @@ export interface Product {
   lastPrice: number | null;
   lastCheckedAt: string | null;
 }
+
+export interface CreateProductRequest {
+  url: string;
+  name?: string;
+  targetPrice?: number;
+}
+
+export interface UpdateProductRequest {
+  targetPrice?: number;
+  active?: boolean;
+}

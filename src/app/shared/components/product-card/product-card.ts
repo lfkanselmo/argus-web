@@ -1,4 +1,4 @@
-import { Component, computed, input } from '@angular/core';
+import { Component, computed, input, output } from '@angular/core';
 import { Product } from '../../../core/models/product.model';
 import { Card } from '../card/card';
 
@@ -11,6 +11,9 @@ import { Card } from '../card/card';
 export class ProductCard {
   product = input.required<Product>();
   previousPrice = input<number | null>(null);
+
+  pauseToggle = output<void>();
+  deleteRequested = output<void>();
 
   protected readonly siteMonogram = computed(() => this.buildMonogram(this.product().siteKey));
   protected readonly siteLabel = computed(() => this.buildSiteLabel(this.product().siteKey));

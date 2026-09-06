@@ -27,4 +27,11 @@
     <span class="updated">{{ lastCheckedLabel() }}</span>
     <a class="link" [href]="product().url" target="_blank" rel="noopener">Ver producto →</a>
   </div>
+
+  <div class="actions">
+    <button type="button" class="action" (click)="pauseToggle.emit()">
+      {{ product().active ? 'Pausar' : 'Reactivar' }}
+    </button>
+    <button type="button" class="action action-danger" (click)="deleteRequested.emit()">Eliminar</button>
+  </div>
 </app-card>

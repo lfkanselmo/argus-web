@@ -1,0 +1,55 @@
+<main class="shell">
+  <header class="intro">
+    <p class="eyebrow">Argus</p>
+    <h1>Productos trackeados</h1>
+    <p class="lead">Precios revisados cada 6 horas. Sumá un producto pegando su URL de MercadoLibre.</p>
+  </header>
+
+  <form class="new-product" (submit)="onSubmit($event)">
+    <app-input-field
+      label="URL del producto"
+      placeholder="https://articulo.mercadolibre.com.co/MCO-…"
+      [value]="urlValue()"
+      (valueChange)="urlValue.set($event)"
+    />
+    <app-input-field
+      label="Nombre (opcional)"
+      placeholder="Guantes moto Suomy"
+      [value]="nameValue()"
+      (valueChange)="nameValue.set($event)"
+    />
+    <app-input-field
+      label="Precio objetivo (opcional)"
+      type="number"
+      placeholder="180000"
+      [value]="targetPriceValue()"
+      (valueChange)="targetPriceValue.set($event)"
+    />
+    @if (formError(); as error) {
+      <p class="form-error">{{ error }}</p>
+    }
+    <app-button type="submit" [disabled]="creating()">
+      {{ creating() ? 'Guardando…' : 'Trackear producto' }}
+    </app-button>
+  </form>
+
+  <section class="list">
+    @if (loading()) {
+      <p class="state">Cargando productos…</p>
+    } @else if (loadError(); as error) {
+      <p class="state state-error">{{ error }}</p>
+    } @else if (products().length === 0) {
+      <p class="state">Todavía no estás trackeando ningún producto.</p>
+    } @else {
+      <div class="grid">
+        @for (product of products(); track product.id) {
+          <app-product-card
+            [product]="product"
+            (pauseToggle)="togglePause(product)"
+            (deleteRequested)="deleteProduct(product)"
+          />
+        }
+      </div>
+    }
+  </section>
+</main>

@@ -1,0 +1,113 @@
+.top {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  margin-bottom: 0.95rem;
+}
+
+.monogram {
+  width: 26px;
+  height: 26px;
+  border-radius: 999px;
+  background: var(--color-primary);
+  color: var(--color-primary-contrast);
+  font-family: var(--font-mono);
+  font-weight: 700;
+  font-size: 0.66rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.site-label {
+  font-size: 0.78rem;
+  color: var(--color-text-muted);
+}
+
+.status-pill {
+  margin-left: auto;
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--color-success);
+  background: var(--color-success-bg);
+  padding: 0.22rem 0.6rem;
+  border-radius: 999px;
+
+  &.paused {
+    color: var(--color-text-muted);
+    background: color-mix(in srgb, var(--color-text-muted) 14%, transparent);
+  }
+}
+
+.name {
+  font-size: 0.98rem;
+  font-weight: 600;
+  margin: 0 0 0.95rem;
+  color: var(--color-text);
+  line-height: 1.35;
+}
+
+.price-row {
+  display: flex;
+  align-items: baseline;
+  gap: 0.6rem;
+  flex-wrap: wrap;
+  margin-bottom: 0.35rem;
+}
+
+.price-now {
+  font-family: var(--font-mono);
+  font-weight: 600;
+  font-size: 1.5rem;
+  font-variant-numeric: tabular-nums;
+  color: var(--color-text);
+}
+
+.price-was {
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  color: var(--color-text-muted);
+  text-decoration: line-through;
+  font-variant-numeric: tabular-nums;
+}
+
+.delta {
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--color-accent-contrast);
+  background: var(--color-accent);
+  padding: 0.15rem 0.55rem;
+  border-radius: 999px;
+}
+
+.target {
+  font-size: 0.8rem;
+  color: var(--color-text-muted);
+  margin: 0 0 1rem;
+}
+
+.foot {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 0.95rem;
+  border-top: 1px solid var(--color-border);
+}
+
+.updated {
+  font-size: 0.74rem;
+  color: var(--color-text-muted);
+}
+
+.link {
+  font-size: 0.82rem;
+  color: var(--color-accent);
+  text-decoration: none;
+  font-weight: 600;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}

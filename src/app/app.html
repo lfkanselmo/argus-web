@@ -1,4 +1,39 @@
 <main class="shell">
-  <h1>Argus</h1>
-  <p>Tracker de precios de MercadoLibre — en construcción.</p>
+  <header class="intro">
+    <p class="eyebrow">Argus · identidad Lince</p>
+    <h1>Vista previa de componentes</h1>
+    <p class="lead">Botón, campo, select y tarjeta de producto con los tokens definidos en
+      <code>styles/_tokens.scss</code>. Cambiá el tema de tu sistema operativo para ver el modo
+      oscuro.</p>
+  </header>
+
+  <section class="group">
+    <h2>Botones</h2>
+    <div class="row">
+      <app-button variant="primary">Trackear producto</app-button>
+      <app-button variant="secondary">Pausar</app-button>
+      <app-button variant="primary" [disabled]="true">Guardando…</app-button>
+    </div>
+  </section>
+
+  <section class="group">
+    <h2>Campos</h2>
+    <div class="row fields">
+      <app-input-field
+        label="URL del producto"
+        placeholder="https://articulo.mercadolibre.com.co/MCO-…"
+        [value]="urlValue()"
+        (valueChange)="urlValue.set($event)"
+      />
+      <app-select-field label="Sitio" [options]="siteOptions" [value]="siteValue()" (valueChange)="siteValue.set($event)" />
+    </div>
+  </section>
+
+  <section class="group">
+    <h2>Tarjetas de producto</h2>
+    <div class="row cards">
+      <app-product-card [product]="demoProduct" [previousPrice]="198000" />
+      <app-product-card [product]="pausedProduct" />
+    </div>
+  </section>
 </main>

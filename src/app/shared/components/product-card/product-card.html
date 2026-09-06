@@ -1,0 +1,30 @@
+<app-card>
+  <div class="top">
+    <div class="monogram">{{ siteMonogram() }}</div>
+    <span class="site-label">{{ siteLabel() }}</span>
+    <span class="status-pill" [class.paused]="!product().active">
+      {{ product().active ? 'Activo' : 'Pausado' }}
+    </span>
+  </div>
+
+  <p class="name">{{ product().name ?? product().url }}</p>
+
+  <div class="price-row">
+    <span class="price-now">{{ formatPrice(product().lastPrice) }}</span>
+    @if (previousPrice() !== null) {
+      <span class="price-was">{{ formatPrice(previousPrice()) }}</span>
+    }
+    @if (deltaLabel(); as delta) {
+      <span class="delta">{{ delta }}</span>
+    }
+  </div>
+
+  @if (product().targetPrice !== null) {
+    <p class="target">Objetivo: {{ formatPrice(product().targetPrice) }}</p>
+  }
+
+  <div class="foot">
+    <span class="updated">{{ lastCheckedLabel() }}</span>
+    <a class="link" [href]="product().url" target="_blank" rel="noopener">Ver producto →</a>
+  </div>
+</app-card>

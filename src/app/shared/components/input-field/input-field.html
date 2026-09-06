@@ -1,0 +1,10 @@
+<div class="field">
+  <label [for]="inputId">{{ label() }}</label>
+  <input
+    [id]="inputId"
+    [type]="type()"
+    [placeholder]="placeholder()"
+    [value]="value()"
+    (input)="value.set($any($event.target).value)"
+  />
+</div>

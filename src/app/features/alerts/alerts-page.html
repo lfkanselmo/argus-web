@@ -1,0 +1,32 @@
+<main class="shell">
+  <a class="back" routerLink="/">← Volver a productos</a>
+
+  <header class="intro">
+    <p class="eyebrow">Argus</p>
+    <h1>Historial de alertas</h1>
+    <p class="lead">Cada bajada de precio relevante y cada aviso de mantenimiento del scraper, en orden.</p>
+  </header>
+
+  @if (loading()) {
+    <p class="state">Cargando…</p>
+  } @else if (loadError(); as error) {
+    <p class="state state-error">{{ error }}</p>
+  } @else if (alerts().length === 0) {
+    <p class="state">Todavía no se disparó ninguna alerta.</p>
+  } @else {
+    <ul class="alert-list">
+      @for (alert of alerts(); track alert.id) {
+        <li class="alert-item" [class.parse-failure]="alert.reason === 'PARSE_FAILURE'">
+          <div class="alert-top">
+            <span class="alert-reason">{{ reasonLabel(alert.reason) }}</span>
+            <span class="alert-date">{{ formatDate(alert.triggeredAt) }}</span>
+          </div>
+          <p class="alert-product">{{ productName(alert.productId) }}</p>
+          @if (alert.reason === 'PRICE_DROP') {
+            <p class="alert-detail">{{ formatPrice(alert.previousPrice) }} → {{ formatPrice(alert.newPrice) }}</p>
+          }
+        </li>
+      }
+    </ul>
+  }
+</main>

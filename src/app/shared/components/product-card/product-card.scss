@@ -108,6 +108,12 @@
   color: var(--color-text-muted);
 }
 
+.links {
+  display: flex;
+  gap: 0.9rem;
+  flex-wrap: wrap;
+}
+
 .link {
   font-size: 0.82rem;
   color: var(--color-accent);

@@ -3,14 +3,14 @@ import { HttpTestingController, provideHttpClientTesting } from '@angular/common
 import { TestBed } from '@angular/core/testing';
 import { provideRouter } from '@angular/router';
 import { API_BASE_URL } from '../../core/config/api.config';
-import { ProductsPage } from './products-page';
+import { AlertsPage } from './alerts-page';
 
-describe('ProductsPage', () => {
+describe('AlertsPage', () => {
   let httpMock: HttpTestingController;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [ProductsPage],
+      imports: [AlertsPage],
       providers: [provideHttpClient(), provideHttpClientTesting(), provideRouter([])]
     }).compileComponents();
     httpMock = TestBed.inject(HttpTestingController);
@@ -20,34 +20,33 @@ describe('ProductsPage', () => {
     httpMock.verify();
   });
 
-  it('muestra el estado vacío cuando la API no tiene productos', async () => {
-    const fixture = TestBed.createComponent(ProductsPage);
+  it('muestra el estado vacío cuando no hay alertas', async () => {
+    const fixture = TestBed.createComponent(AlertsPage);
     fixture.detectChanges();
 
+    httpMock.expectOne(`${API_BASE_URL}/alerts`).flush([]);
     httpMock.expectOne(`${API_BASE_URL}/products`).flush([]);
     await fixture.whenStable();
     fixture.detectChanges();
 
     const text = (fixture.nativeElement as HTMLElement).textContent ?? '';
-    expect(text).toContain('Todavía no estás trackeando ningún producto');
+    expect(text).toContain('Todavía no se disparó ninguna alerta');
   });
 
-  it('muestra un mensaje de error si la API no responde', async () => {
-    const fixture = TestBed.createComponent(ProductsPage);
+  it('muestra el nombre del producto resolviendo el productId contra la lista', async () => {
+    const fixture = TestBed.createComponent(AlertsPage);
     fixture.detectChanges();
 
-    httpMock.expectOne(`${API_BASE_URL}/products`).flush('error', { status: 500, statusText: 'Server Error' });
-    await fixture.whenStable();
-    fixture.detectChanges();
-
-    const text = (fixture.nativeElement as HTMLElement).textContent ?? '';
-    expect(text).toContain('No se pudo cargar');
-  });
-
-  it('renderiza una tarjeta por cada producto recibido', async () => {
-    const fixture = TestBed.createComponent(ProductsPage);
-    fixture.detectChanges();
-
+    httpMock.expectOne(`${API_BASE_URL}/alerts`).flush([
+      {
+        id: 1,
+        productId: 1,
+        reason: 'PRICE_DROP',
+        previousPrice: 198000,
+        newPrice: 172500,
+        triggeredAt: '2026-09-05T00:00:00Z'
+      }
+    ]);
     httpMock.expectOne(`${API_BASE_URL}/products`).flush([
       {
         id: 1,
@@ -64,7 +63,8 @@ describe('ProductsPage', () => {
     await fixture.whenStable();
     fixture.detectChanges();
 
-    const cards = (fixture.nativeElement as HTMLElement).querySelectorAll('app-product-card');
-    expect(cards.length).toBe(1);
+    const text = (fixture.nativeElement as HTMLElement).textContent ?? '';
+    expect(text).toContain('Guantes moto Suomy');
+    expect(text).toContain('Bajó de precio');
   });
 });

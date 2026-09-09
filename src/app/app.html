@@ -1,1 +1,8 @@
-<app-products-page></app-products-page>
+<nav class="nav">
+  <a class="brand" routerLink="/">Argus</a>
+  <div class="links">
+    <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Productos</a>
+    <a routerLink="/alerts" routerLinkActive="active">Alertas</a>
+  </div>
+</nav>
+<router-outlet></router-outlet>

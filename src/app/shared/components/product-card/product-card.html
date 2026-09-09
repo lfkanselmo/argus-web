@@ -25,7 +25,10 @@
 
   <div class="foot">
     <span class="updated">{{ lastCheckedLabel() }}</span>
-    <a class="link" [href]="product().url" target="_blank" rel="noopener">Ver producto →</a>
+    <span class="links">
+      <a class="link" [routerLink]="['/products', product().id]">Historial →</a>
+      <a class="link" [href]="product().url" target="_blank" rel="noopener">Ver producto ↗</a>
+    </span>
   </div>
 
   <div class="actions">

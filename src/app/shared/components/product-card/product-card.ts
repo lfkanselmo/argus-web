@@ -1,10 +1,11 @@
 import { Component, computed, input, output } from '@angular/core';
+import { RouterLink } from '@angular/router';
 import { Product } from '../../../core/models/product.model';
 import { Card } from '../card/card';
 
 @Component({
   selector: 'app-product-card',
-  imports: [Card],
+  imports: [Card, RouterLink],
   templateUrl: './product-card.html',
   styleUrl: './product-card.scss'
 })

@@ -1,0 +1,123 @@
+:host {
+  display: block;
+}
+
+.shell {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 3rem 1.5rem 5rem;
+}
+
+.back {
+  display: inline-block;
+  font-size: 0.85rem;
+  color: var(--color-text-muted);
+  text-decoration: none;
+  margin-bottom: 1.5rem;
+
+  &:hover {
+    color: var(--color-text);
+  }
+}
+
+.intro {
+  margin-bottom: 2.5rem;
+}
+
+.eyebrow {
+  font-size: 0.78rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+  font-weight: 600;
+  margin: 0 0 0.9rem;
+}
+
+.intro h1 {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-weight: 500;
+  font-size: clamp(1.9rem, 4vw, 2.6rem);
+  color: var(--color-primary);
+  margin: 0 0 0.7rem;
+  text-wrap: balance;
+}
+
+.lead {
+  font-size: 1rem;
+  line-height: 1.6;
+  color: var(--color-text-muted);
+  margin: 0;
+  max-width: 60ch;
+}
+
+.state {
+  font-size: 0.95rem;
+  color: var(--color-text-muted);
+}
+
+.state-error {
+  color: var(--color-danger);
+}
+
+.alert-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.9rem;
+}
+
+.alert-item {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-left: 3px solid var(--color-accent);
+  border-radius: var(--radius-md);
+  padding: 1rem 1.2rem;
+
+  &.parse-failure {
+    border-left-color: var(--color-danger);
+  }
+}
+
+.alert-top {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+  margin-bottom: 0.4rem;
+}
+
+.alert-reason {
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--color-accent);
+}
+
+.parse-failure .alert-reason {
+  color: var(--color-danger);
+}
+
+.alert-date {
+  font-size: 0.78rem;
+  color: var(--color-text-muted);
+}
+
+.alert-product {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--color-text);
+  margin: 0 0 0.3rem;
+}
+
+.alert-detail {
+  font-family: var(--font-mono);
+  font-size: 0.88rem;
+  color: var(--color-text-muted);
+  font-variant-numeric: tabular-nums;
+  margin: 0;
+}

@@ -1,0 +1,31 @@
+<main class="shell">
+  <a class="back" routerLink="/">← Volver a productos</a>
+
+  @if (loading()) {
+    <p class="state">Cargando…</p>
+  } @else if (loadError(); as error) {
+    <p class="state state-error">{{ error }}</p>
+  } @else if (product(); as product) {
+    <header class="intro">
+      <p class="eyebrow">{{ product.siteKey }}</p>
+      <h1>{{ product.name ?? product.url }}</h1>
+    </header>
+
+    <div class="stats">
+      <div class="stat">
+        <span class="stat-label">Precio actual</span>
+        <span class="stat-value">{{ formatPrice(product.lastPrice) }}</span>
+      </div>
+      <div class="stat">
+        <span class="stat-label">Objetivo</span>
+        <span class="stat-value">{{ formatPrice(product.targetPrice) }}</span>
+      </div>
+    </div>
+
+    @if (history().length === 0) {
+      <p class="state">Todavía no hay historial de precio para este producto.</p>
+    } @else {
+      <app-price-chart [history]="history()" [targetPrice]="product.targetPrice" />
+    }
+  }
+</main>

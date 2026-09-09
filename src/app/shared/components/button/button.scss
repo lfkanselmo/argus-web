@@ -1,4 +1,9 @@
+:host {
+  display: inline-block;
+}
+
 .btn {
+  width: 100%;
   font-family: var(--font-body);
   font-weight: 600;
   font-size: 0.92rem;
